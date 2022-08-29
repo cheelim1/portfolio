@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Twilio Sandbox</title>
+  </head>
+  <body>
+    <%- include('../views/header.ejs')-%>
+    <div class='container' style="margin-top: 100px">
+      <div class="hero-unit">
+        <h1>Welcome to My Twilio Sandbox 👋</h1><br>
+
+        <p>To try start a conversation with my bot 🤖</p>
+        <p>Send this message <b>join money-length</b> to this number <i>+1 415 523 8886</i></p>
+        <p>This will start a 24 hour session with Twilio Sandbox so that you can have a chat with my so call Whatsapp Bot</p><br><br>
+
+        <form>
+            <div class="form-group">
+                <label for="phoneNumber">Key in your phone number</label>
+                <input type="number" class="form-control" id="phoneNumber" placeholder="60121234567">
+                <small>Example number +60129893448</small>
+                <small class="form-text text-muted">We'll never share your number with anyone else.</small>
+            </div>
+
+            <p>
+              <a class="btn btn-primary btn-large" onclick="sendCampaign()">
+                Click this button to Start Conversation 👈 
+              </a>
+            </p>
+        </form>
+
+      </div>
+    </div>
+    <%- include('../views/footer.ejs')-%>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+         function sendCampaign(){
+		try{
+
+      var number = document.getElementById("phoneNumber").value;
+      submitOK = "true";
+
+      if (phoneNumber.length < 10) {
+          alert("This doesn't look like a valid phone number");
+          submitOK = "false";
+      } 
+
+      if (submitOK == "false") {
+          return false;
+      }
+      console.log(number + " PHONE NUMBER <HERE")
+
+      const res = await fetch('https://cltosreportfolio.herokuapp.com//twilio/sendTemplate',{
+        method: 'post',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data:number })		
+        }).then(res=>res.json());
+        console.log(res.status)
+        if(res.status === 201){
+          alert(res.message);
+        }else if(res.status === 403){
+          alert(res.message);
+        }else{
+          alert(res.message);
+        }
+		}catch(err){
+			console.log(err)
+			alert("Something Bad Happened ",err);
+		}
+	}
+    </script>
+
+</body>
+</html>
