@@ -8,12 +8,12 @@ router.get('/', function(req,res){
   res.sendFile(__dirname + '/index.html')
 })
 
-router.get('/hello/:name',function(req,res){
-  res.render('hello',{param: req.params.name})
-})
+// router.get('/hello/:name',function(req,res){
+//   res.render('hello',{param: req.params.name})
+// })
 
-router.get('/twilio', function(req,res){
-  res.render('twilio.ejs')
-})
+// router.get('/twilio', function(req,res){
+//   res.render('twilio.ejs')
+// })
 
 module.exports = router;
