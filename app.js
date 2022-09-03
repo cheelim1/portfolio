@@ -4,9 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var twilioRouter = require('./routes/index');
+var indexRouter = require('./docs/index');
+var usersRouter = require('./docs/users');
+var twilioRouter = require('./docs/index');
 var app = express();
 
 // view engine setup
